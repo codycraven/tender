@@ -1,6 +1,6 @@
 # Tender
 
-When creating microservices, the need for a simple file server often arises to serve production assets from prior build steps. Tender was designed to meet this need with no dependencies and with an extremely permissive license ([ISC](https://choosealicense.com/licenses/isc/)).
+When creating microservices, the need for a simple file server often arises to serve production assets from prior build steps. Tender was designed to meet this need with no dependencies for the executable and with an extremely permissive license ([ISC](https://choosealicense.com/licenses/isc/)).
 
 The name of the project comes from purpose built boats that handle specific functions—some carry people from cruise ships to docks, some maintain buoys, some transport mail, etc.
 
