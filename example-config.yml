@@ -1,0 +1,7 @@
+serve-paths:
+  - type: directory-no-listing # Serve all files in directory without directory listings
+    route: /my-dir # Route to respond to requests
+    path: /var/lib/fileserver/dir-with-children-to-serve # Path to serve requests from
+  - type: file # Serve a specific file at a specific route
+    route: /awesome.css
+    path: /var/lib/fileserver/dist/sweet.css
