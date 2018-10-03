@@ -1,7 +1,11 @@
-serve-paths:
-  - type: directory-no-listing # Serve all files in directory without directory listings
-    route: /my-dir # Route to respond to requests
-    path: /var/lib/fileserver/dir-with-children-to-serve # Path to serve requests from
-  - type: file # Serve a specific file at a specific route
-    route: /awesome.css
-    path: /var/lib/fileserver/dist/sweet.css
+tenders:
+  - type: directory
+    route: /my-dir/with-browseable-files
+    path: /var/lib/tender/some/dir
+  - type: directory no listing
+    route: /my-dir
+    path: /var/lib/tender/other/dir
+  - type: file
+    route: /foo.css
+    path: /home/myuser/my-project/dist/bar.css
+port: 3509
