@@ -38,6 +38,42 @@ tenderserver --config-file ../some-tender-config.yml
 
 A [sample configuration file](https://github.com/codycraven/tender/blob/master/example-config.yml) is included to show usage of different tenders.
 
+### Docker base image
+
+The foundational use-case for Tender is a light-weight, from scratch, file server to deliver static assets built by other Docker build steps.
+
+Example:
+
+```yaml
+# docker-tender-config.yml - used by Dockerfile below
+tenders:
+  - type: directory no listing
+    route: /my-compiled-assets/
+    path: /dist
+```
+
+```Dockerfile
+# Dockerfile
+
+# Assume we have a build step that creates files in "dist" within the WORKDIR
+# that we want to serve with tender.
+FROM node:8-alpine as compiler
+WORKDIR /usr/src/app
+ENV NODE_ENV production
+COPY ./package* ./
+RUN NODE_ENV=development npm install && npm cache clean --force
+COPY . .
+RUN npx webpack
+
+FROM codycraven/tender
+# Overwrite tender's example configuration.
+COPY ./docker-tender-config.yml /config.yml
+# Copy assets from compiler build step.
+COPY --from=compiler /usr/src/app/dist /dist
+# Expose tender's port (optional)
+EXPOSE 3509
+```
+
 ## Development
 
 Working on this project requires having [Go 1.11 or greater installed](https://golang.org/doc/install).
