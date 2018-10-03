@@ -36,6 +36,8 @@ Example:
 tenderserver --config-file ../some-tender-config.yml
 ```
 
+A [sample configuration file](https://github.com/codycraven/tender/blob/master/example-config.yml) is included to show usage of different tenders.
+
 ## Development
 
 Working on this project requires having [Go 1.11 or greater installed](https://golang.org/doc/install).
