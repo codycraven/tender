@@ -23,7 +23,12 @@ func (c *config) UnmarshalJSON(b []byte) error {
 		return err
 	}
 
-	c.Port = raw.Port
+	if raw.Port > 0 {
+		c.Port = raw.Port
+	} else {
+		// Default port
+		c.Port = 3509
+	}
 
 	// To support third party tenders we could generate this...
 	for _, v := range raw.Tenders {
