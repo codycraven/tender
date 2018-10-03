@@ -1,0 +1,7 @@
+**/*.md
+**/*.gitignore
+**/*.editorconfig
+**/LICENSE
+
+# Keep the following in sync with .gitignore
+cmd/tenderserver/tenderserver
