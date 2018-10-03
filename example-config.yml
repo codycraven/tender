@@ -9,4 +9,4 @@ tenders:
     route: /foo.css
     path: /home/myuser/my-project/dist/bar.css
 # The port the server will listen on.
-port: 3509
+port: 3509 # Defaults to 3509 if undefined or invalid.
