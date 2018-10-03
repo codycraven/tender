@@ -1,11 +1,12 @@
 tenders:
   - type: directory
-    route: /my-dir/with-browseable-files
+    route: /my-dir/with-browseable-files/ # Trailing slash is critical for directory routes
     path: /var/lib/tender/some/dir
   - type: directory no listing
-    route: /my-dir
+    route: /my-dir/ # Trailing slash is critical for directory routes
     path: /var/lib/tender/other/dir
   - type: file
     route: /foo.css
     path: /home/myuser/my-project/dist/bar.css
+# The port the server will listen on.
 port: 3509
