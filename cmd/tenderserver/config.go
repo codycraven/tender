@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"log"
+	"net/http"
 
 	"github.com/codycraven/tender/pkg/tender"
 )
@@ -11,6 +12,7 @@ import (
 type config struct {
 	Tenders []Tender
 	Port    int
+	Mux     *http.ServeMux
 }
 
 // UnmarshalJSON interface method to
@@ -36,13 +38,13 @@ func (c *config) UnmarshalJSON(b []byte) error {
 		switch v["type"] {
 		case "directory":
 			t = &tender.Directory{}
-			t.DeployTender(v["path"], v["route"])
+			t.DeployTender(v["path"], v["route"], c.Mux)
 		case "directory no listing":
 			t = &tender.DirectoryNoListing{}
-			t.DeployTender(v["path"], v["route"])
+			t.DeployTender(v["path"], v["route"], c.Mux)
 		case "file":
 			t = &tender.File{}
-			t.DeployTender(v["path"], v["route"])
+			t.DeployTender(v["path"], v["route"], c.Mux)
 		default:
 			return fmt.Errorf("tender does not have supported type %v", v)
 		}
