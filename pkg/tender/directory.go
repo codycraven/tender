@@ -9,10 +9,10 @@ import (
 type Directory struct{}
 
 // DeployTender for Directory to serve directory.
-func (d *Directory) DeployTender(path, route string) error {
+func (d *Directory) DeployTender(path, route string, mux *http.ServeMux) error {
 	fs := http.FileServer(http.Dir(path))
 	h := http.StripPrefix(route, fs)
-	http.Handle(route, h)
+	mux.Handle(route, h)
 	return nil
 }
 
@@ -23,10 +23,10 @@ type DirectoryNoListing struct {
 }
 
 // DeployTender for DirectoryNoListing to serve directory.
-func (d *DirectoryNoListing) DeployTender(path, route string) error {
+func (d *DirectoryNoListing) DeployTender(path, route string, mux *http.ServeMux) error {
 	d.Fs = http.Dir(path)
 	h := http.StripPrefix(route, http.FileServer(d))
-	http.Handle(route, h)
+	mux.Handle(route, h)
 	return nil
 }
 
