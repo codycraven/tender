@@ -51,13 +51,11 @@ func main() {
 		log.Fatal(err)
 	}
 
-	mux := http.NewServeMux()
-
-	mux.Handle("/healthz", healthCheck())
+	cfg.Mux.Handle("/healthz", healthCheck())
 
 	srv := &http.Server{
 		Addr:    fmt.Sprintf(":%d", cfg.Port),
-		Handler: mux,
+		Handler: cfg.Mux,
 	}
 
 	idleConnsClosed := make(chan struct{})

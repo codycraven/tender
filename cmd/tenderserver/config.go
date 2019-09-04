@@ -32,6 +32,8 @@ func (c *config) UnmarshalJSON(b []byte) error {
 		c.Port = 3509
 	}
 
+	c.Mux = http.NewServeMux()
+
 	// To support third party tenders we could generate this...
 	for _, v := range raw.Tenders {
 		var t Tender
